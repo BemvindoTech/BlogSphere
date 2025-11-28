@@ -1,0 +1,49 @@
+# BlogSphere
+
+## Modeles 
+
+-  utilisateur(user)
+    
+    - username
+    - email
+    - password
+    - bio
+    - photo_profil
+
+- article
+  - title 
+  - slug
+  - category
+  - content
+  - author
+
+- like
+    - article
+    - user
+- comment(commenttaire)
+  - article
+  - author
+  - content 
+  - created_at
+
+## Fonctionnalités'
+
+- Authentification
+  - Inscription / connexion (email, mot de passe)
+  - Déconnexion sécurisée
+  - Gestion du compte (pseudo, bio, photo de profil)
+- Articles
+  - Création, édition et suppression d’articles
+  - Éditeur riche (React Quill ou TipTap) : titres, paragraphes, images, code, listes,
+  citations…
+  - Aperçu avant publication
+  - Gestion des brouillons
+- Interactions
+  - Commentaires sur chaque article
+  - Like (système de réactions simple)
+  - Compteur de vues
+- Navigation
+  - Page d’accueil avec les derniers articles
+  - Filtres par auteur / popularité / date
+  - Page de lecture d’un article
+  - Profil public avec biographie et liste d’articles publiés
