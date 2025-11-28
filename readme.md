@@ -56,3 +56,9 @@
 - instalationde django admin : python manage.py createsuperuser
   - ajustement de design et de theme avec jazzmin_ui_tweaks
   - creation d'un super utilisateur
+  
+- Création un modèle utilisateur et un profil personnalisés
+    - creation des modeles
+    - logique sur la création d'utilisateur et profile
+    - effectuer les migrations 
+    - effectuer des test sur Django admin
