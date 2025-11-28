@@ -47,3 +47,12 @@
   - Filtres par auteur / popularité / date
   - Page de lecture d’un article
   - Profil public avec biographie et liste d’articles publiés
+
+
+
+## ma ligne droite
+
+- apres initialisation du projet 
+- instalationde django admin : python manage.py createsuperuser
+  - ajustement de design et de theme avec jazzmin_ui_tweaks
+  - creation d'un super utilisateur
