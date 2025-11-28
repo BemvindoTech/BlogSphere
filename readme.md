@@ -62,3 +62,8 @@
     - logique sur la création d'utilisateur et profile
     - effectuer les migrations 
     - effectuer des test sur Django admin
+- ajouter les models restants
+  - model ajouté (category,comment,bookmark,notification,post)
+  - ajouter les modele dans l'interface admin
+  - effectuer les migrations 
+  
