@@ -35,7 +35,10 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
+
 INSTALLED_APPS = [
+    'jazzmin',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -45,15 +48,14 @@ INSTALLED_APPS = [
     'articles',
 
     # Custum Apps
-    'api'
+    'api',
     
     # Third Party Apps
-    'corsheaders',
     'rest_framework',
+    'corsheaders',
     'rest_framework_simplejwt.token_blacklist',
     'drf_yasg',
 ]
-
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'corsheaders.middleware.CorsMiddleware',
@@ -178,4 +180,4 @@ SIMPLE_JWT = {
 
     }
 
-    #CORS_ALLOW_ALL_ORIGINS = True
+    #²CORS_ALLOW_ALL_ORIGINS = True
