@@ -115,7 +115,7 @@ class NotificationSerialize(serializers.ModelSerializer):
             self.Meta.depth = 1
 
 
-class AuthorSerializer(serializers.ModelSerializer):
+class AuthorSerializer(serializers.Serializer):
     views = serializers.IntegerField(default=0)
     posts = serializers.IntegerField(default=0)
     likes = serializers.IntegerField(default=0)

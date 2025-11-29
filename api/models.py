@@ -97,7 +97,7 @@ class Post(models.Model):
     description = models.TextField(null=True,blank=True)
     image = models.ImageField(upload_to="image",null=True,blank=True)
     status = models.CharField(choices=STATUS,default='Active',max_length=100)
-    views = models.PositiveIntegerField(default=0)
+    view = models.IntegerField(default=0)
     likes = models.ManyToManyField(User,blank=True,related_name='likes_user')
     slug = models.SlugField(unique=True, null=True,blank=True)
     date = models.DateTimeField(auto_now_add=True,blank=True)
@@ -136,6 +136,7 @@ class Bookmark(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE)
     post = models.ForeignKey(Post,on_delete=models.CASCADE)
     date = models.DateTimeField(auto_now_add=True)
+
     def __str__(self):
         return self.post.title
 
