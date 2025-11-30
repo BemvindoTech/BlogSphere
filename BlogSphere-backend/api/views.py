@@ -28,12 +28,12 @@ import random
 
 from unicodedata import category
 
-import api.models
+
 # Custom Imports
-from api import serializer as api_serializer
-from api import models as api_models
-from api.models import User
-from api.serializer import MyTokenObtainPairSerializer
+from . import serializer as api_serializer
+from . import models as api_models
+from .models import User
+from .serializer import MyTokenObtainPairSerializer
 
 
 class MyTokenObtainPairView(TokenObtainPairView):
@@ -87,6 +87,8 @@ class PostDetailAPIView(generics.RetrieveAPIView):
     serializer_class = api_serializer.PostSerializer
     permission_classes = [AllowAny]
 
+    lookup_field = 'slug'
+
     def get_queryset(self):
         slug = self.kwargs['slug']
         post = api_models.Post.objects.get(slug=slug, status="Active")
@@ -118,7 +120,7 @@ class LikePostAPIView(APIView):
         else:
             post.likes.add(user)
 
-            api.models.Notification.objects.create(
+            api_models.Notification.objects.create(
                 user=post.user,
                 post=post,
                 type="Like"
@@ -146,13 +148,13 @@ class PostCommentAPIView(APIView):
 
         post = api_models.Post.objects.get(id=post_id)
 
-        api.models.Comment.objects.create(
+        api_models.Comment.objects.create(
             post=post,
             name=name,
             email=email,
             comment=comment,
         )
-        api.models.Notification.objects.create(
+        api_models.Notification.objects.create(
             user=post.user,
             post=post,
             type="Comment",
@@ -183,12 +185,12 @@ class BookmarkPostAPIView(APIView):
             bookmark.delete()
             return Response({"message": "Publication dés-epingléé "}, status=status.HTTP_200_OK)
         else:
-            api.models.Bookmark.objects.create(
+            api_models.Bookmark.objects.create(
                 user=user,
                 post=post,
             )
 
-            api.models.Notification.objects.create(
+            api_models.Notification.objects.create(
                 user=post.user,
                 post=post,
                 type="Bookmark",
