@@ -56,6 +56,30 @@ function Detail() {
         });
     };
 
+    const handleLikePost = async () => {
+        const json = {
+            user_id: 1,
+            post_id: post?.id,
+        };
+
+        const response = await apiInstance.post('post/like-post/', json);
+        console.log(response.data);
+        Toast("success", response.data.message);
+        fetchPost();
+    };
+
+    const handleBookmarkPost = async () => {
+        const json = {
+            user_id: 1,
+            post_id: post?.id,
+        };
+
+        const response = await apiInstance.post('post/bookmark-post/', json);
+        console.log(response.data);
+        Toast("success", response.data.message);
+        fetchPost();
+    };
+
     return (
         <>
             <Header />
@@ -65,7 +89,7 @@ function Detail() {
                         <div className="col-12">
                             <a href="#" className="badge bg-danger mb-2 text-decoration-none">
                                 <i className="small fw-bold " />
-                                Lifestyle
+                                {post?.category?.title}
                             </a>
                             <h1 className="text-center">{post.title}</h1>
                         </div>
@@ -119,6 +143,15 @@ function Detail() {
                                     )) }
 
                                 </ul>
+
+                                <button onClick={handleLikePost} className="btn btn-primary">
+                                    <i className="fas fa-thumbs-up me-2"></i>
+                                    {post?.likes?.length}
+                                </button>
+
+                                <button onClick={handleBookmarkPost} className="btn btn-danger ms-2">
+                                    <i className="fas fa-bookmark"></i>
+                                </button>
                             </div>
                         </div>
                         {/* Left sidebar END */}
