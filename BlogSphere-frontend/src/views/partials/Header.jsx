@@ -1,9 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useAuthStore } from "../../store/auth";
+import {  useAuthStore} from "../../store/auth";
 
 function Header() {
     const [isLoggedIn, user] = useAuthStore((state) => [state.isLoggedIn, state.user]);
+    console.log(isLoggedIn());
     return (
         <header className="navbar-dark bg-dark navbar-sticky header-static">
             <nav className="navbar navbar-expand-lg">
@@ -93,24 +94,25 @@ function Header() {
                             </li>
                             <li className="nav-item">
                                 {isLoggedIn() ? (
-                                    <>
-                                        <Link to={"/dashboard/"} className="btn btn-secondary" href="dashboard.html">
-                                            Dashboard <i className="bi bi-grid-fill"></i>
-                                        </Link>
-                                        <Link to={"/logout/"} className="btn btn-danger ms-2" href="dashboard.html">
-                                            Logout <i className="fas fa-sign-out-alt"></i>
-                                        </Link>
-                                    </>
+                                <>
+                                    <Link to={"/dashboard/"} className="btn btn-success" href="dashboard.html">
+                                        Tableau de bord <i className="fas fa-dashboard"></i>
+                                    </Link>
+                                    <Link to={"/logout/"} className="btn btn-success ms-2" href="dashboard.html">
+                                        Se déconnecter <i className="fas fa-sign-out-alt"></i>
+                                    </Link>
+                                </>
                                 ) : (
-                                    <>
-                                        <Link to={"/register/"} className="btn btn-success" href="dashboard.html">
-                                            Register <i className="fas fa-user-plus"></i>
-                                        </Link>
-                                        <Link to={"/login/"} className="btn btn-success ms-2" href="dashboard.html">
-                                            Login <i className="fas fa-sign-in-alt"></i>
-                                        </Link>
-                                    </>
-                                )}
+                                <>
+                                    <Link to={"/register/"} className="btn btn-success" href="dashboard.html">
+                                        S'incrire <i className="fas fa-user-plus"></i>
+                                    </Link>
+                                    <Link to={"/login/"} className="btn btn-success ms-2" href="dashboard.html">
+                                        Se connecter <i className="fas fa-sign-in-alt"></i>
+                                    </Link>
+                                </>)}
+
+
                             </li>
                         </ul>
                     </div>
