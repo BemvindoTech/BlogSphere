@@ -116,6 +116,9 @@ class Post(models.Model):
             self.slug = slugify(self.title) + "-" + shortuuid.uuid()[:2]
         super(Post,self).save(*args, **kwargs)
 
+    def comments(self):
+        return Comment.objects.filter(post=self)
+
 
 class Comment(models.Model):
     post = models.ForeignKey(Post,on_delete=models.CASCADE)

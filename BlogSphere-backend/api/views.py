@@ -87,14 +87,19 @@ class PostDetailAPIView(generics.RetrieveAPIView):
     serializer_class = api_serializer.PostSerializer
     permission_classes = [AllowAny]
 
-    lookup_field = 'slug'
-
-    def get_queryset(self):
+    def get_object(self):
         slug = self.kwargs['slug']
         post = api_models.Post.objects.get(slug=slug, status="Active")
         post.view += 1
         post.save()
         return post
+
+    # def get_queryset(self):
+    #     slug = self.kwargs['slug']
+    #     post = api_models.Post.objects.get(slug=slug, status="Active")
+    #     post.view += 1
+    #     post.save()
+    #     return post
 
 
 class LikePostAPIView(APIView):
