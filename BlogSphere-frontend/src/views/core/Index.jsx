@@ -14,8 +14,8 @@ function Index() {
 
     const fetchPosts = async () => {
         try {
-            const response_post = await apiInstance.get('post/lists/')
-            const response_category = await apiInstance.get('post/category/list/')
+            const response_post = await apiInstance.get('post/lists/');
+            const response_category = await apiInstance.get('post/category/list/');
 
             setPosts(response_post.data);
             setCategory(response_category.data);
@@ -48,7 +48,7 @@ function Index() {
                             <a href="#" className="d-block card-img-flash">
                                 <img src="assets/images/adv-3.png" alt="" />
                             </a>
-                            <h2 className="text-start d-block mt-1">Trending Articles 🔥</h2>
+                            <h2 className="text-start d-block mt-1">Articles tendances</h2>
                         </div>
                     </div>
                 </div>
@@ -165,7 +165,7 @@ function Index() {
                             <a href="#" className="d-block card-img-flash">
                                 <img src="assets/images/adv-3.png" alt="" />
                             </a>
-                            <h2 className="text-start d-block mt-1">Latest Articles 🕒</h2>
+                            <h2 className="text-start d-block mt-1">Les derniers articles</h2>
                         </div>
                     </div>
                 </div>
@@ -403,7 +403,7 @@ function Index() {
                             <li className="">
                                 <button className="page-link text-dark fw-bold me-1 rounded">
                                     <i className="fas fa-arrow-left me-2" />
-                                    Previous
+                                    Précedant
                                 </button>
                             </li>
                         </ul>
@@ -418,7 +418,7 @@ function Index() {
                         <ul className="pagination">
                             <li className={`totalPages`}>
                                 <button className="page-link text-dark fw-bold ms-1 rounded">
-                                    Next
+                                    Suivant
                                     <i className="fas fa-arrow-right ms-3 " />
                                 </button>
                             </li>

@@ -148,7 +148,7 @@ REST_FRAMEWORK = {
     )
 }
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),
+    'ACCESS_TOKEN_LIFETIME': timedelta(days=2),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=50),
     'ROTATE_REFRESH_TOKENS': True,
     'BLACKLIST_AFTER_ROTATION': True,
@@ -186,13 +186,13 @@ AUTH_USER_MODEL = 'api.User'
 
 # Custom Admin Settings
 JAZZMIN_SETTINGS = {
-"site_title": "Desphixs",
-"site_header": "Desphixs",
-"site_brand": "Modern Marketplace ",
+"site_title": "BlogSphere",
+"site_header": "BlogSphere",
+"site_brand": "Site Blog ",
 # "site_icon": "images/favicon.ico",
 # "site_logo": "images/logos/logo.jpg",
-"welcome_sign": "Welcome To Desphixs",
-"copyright": "Desphixs",
+"welcome_sign": "Welcome To Bemtech",
+"copyright": "Bemvindo",
 "user_avatar": "images/photos/logo.jpg",
 "topmenu_links": [
     {"name": "Dashboard", "url": "home", "permissions": ["auth.view_user"]},

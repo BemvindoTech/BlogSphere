@@ -35,6 +35,7 @@ function Register() {
             alert(JSON.stringify(error));
             resetForm();
         }else{
+
             navigate("/");
         }
 
