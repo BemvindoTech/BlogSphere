@@ -78,13 +78,9 @@ function Comments() {
                                                                 className="d-flex align-items-center justify-content-between">
                                                                 <div>
                                                                     <h4 className="mb-0">{comment.name}</h4>
-                                                                    <span>{Moment(comment.date)}</span>
-                                                                </div>
-                                                                <div>
-                                                                    <a href="#" data-bs-toggle="tooltip"
-                                                                       data-placement="top" title="Report Abuse">
-                                                                        <i className="fe fe-flag"/>
-                                                                    </a>
+                                                                    <span> le { Moment(comment.date)}</span>
+                                                                    <h6 className="mb-0 mt-1 text-decoration-underline" > Article : {comment.post.title}</h6>
+
                                                                 </div>
                                                             </div>
                                                             <div className="mt-2">
