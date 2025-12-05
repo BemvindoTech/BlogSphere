@@ -2,11 +2,9 @@ import React, {useEffect, useState} from "react";
 import Header from "../partials/Header";
 import Footer from "../partials/Footer";
 import {json, Link} from "react-router-dom";
-import useAuth from "../../plugin/useUserData";
 import apiInstance from "../../utils/axios";
 import useUserData from "../../plugin/useUserData";
-import axios from "axios";
-import index from "../core/Index.jsx";
+
 import moment from "moment";
 
 function Dashboard() {

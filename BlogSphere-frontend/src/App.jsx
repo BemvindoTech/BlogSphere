@@ -13,11 +13,11 @@ import ForgotPassword from "./views/auth/ForgotPassword";
 import CreatePassword from "./views/auth/CreatePassword";
 import Dashboard from "./views/dashboard/Dashboard";
 import Posts from "./views/dashboard/Posts";
-import AddPost from "./views/dashboard/AddPost";
-import EditPost from "./views/dashboard/EditPost";
+// import AddPost from "./views/dashboard/AddPost";
+// import EditPost from "./views/dashboard/EditPost";
 import Comments from "./views/dashboard/Comments";
-import Notifications from "./views/dashboard/Notifications";
-import Profile from "./views/dashboard/Profile";
+// import Notifications from "./views/dashboard/Notifications";
+// import Profile from "./views/dashboard/Profile";
 import MainWrapper from "../src/layouts/MainWrapper";
 
 function App() {
@@ -42,11 +42,11 @@ function App() {
                  {/* Dashboard */}
                  <Route path="/dashboard/" element={<Dashboard />} />
                  <Route path="/posts/" element={<Posts />} />
-                 <Route path="/add-post/" element={<AddPost />} />
-                 <Route path="/edit-post/:id/" element={<EditPost />} />
+                 {/*<Route path="/add-post/" element={<AddPost />} />*/}
+                 {/*<Route path="/edit-post/:id/" element={<EditPost />} />*/}
                  <Route path="/comments/" element={<Comments />} />
-                 <Route path="/notifications/" element={<Notifications />} />
-                 <Route path="/profile/" element={<Profile />} />
+                 {/*<Route path="/notifications/" element={<Notifications />} />*/}
+                 {/*<Route path="/profile/" element={<Profile />} />*/}
 
                  {/* Pages */}
                  <Route path="/about/" element={<About />} />
