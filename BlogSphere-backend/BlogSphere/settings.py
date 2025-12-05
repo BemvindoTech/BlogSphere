@@ -13,7 +13,8 @@ from datetime import timedelta
 from pathlib import Path
 import os
 
-from ckeditor_demo.settings import MEDIA_ROOT
+# from ckeditor_demo.settings import MEDIA_ROOT
+
 
 import articles
 

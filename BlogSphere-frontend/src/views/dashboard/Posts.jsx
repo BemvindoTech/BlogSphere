@@ -1,33 +1,36 @@
-import React, { useState, useEffect } from "react";
+import React, {useEffect, useState} from "react";
 import Header from "../partials/Header";
 import Footer from "../partials/Footer";
-import { Link } from "react-router-dom";
-
+import {json, Link} from "react-router-dom";
+import useAuth from "../../plugin/useUserData";
 import apiInstance from "../../utils/axios";
 import useUserData from "../../plugin/useUserData";
+import axios from "axios";
+import index from "../core/Index.jsx";
 import moment from "moment";
 
 function Posts() {
     const [posts, setPosts] = useState([]);
-    const [filteredPosts, setFilteredPosts] = useState([]);
-    const userId = useUserData()?.user_id;
 
-    const fetchPosts = async () => {
-        const post_res = await apiInstance.get(`author/dashboard/post-list/${userId}/`);
-        setPosts(post_res.data);
+    const user_id = useUserData()?.user_id
+
+    const fetchPost = async () => {
+        try {
+            const post_res = await apiInstance.get(`author/dashboard/post-list/${user_id}/`);
+            setPosts(post_res?.data);
+            console.log(post_res?.data);
+        }catch (error) {
+            console.log(error);
+        }
     };
-
-    useEffect(() => {
-        fetchPosts();
-    }, []);
 
     const handleSearch = (e) => {
         const query = e.target.value.toLowerCase();
         if (query === "") {
-            fetchPosts();
-        } else {
-            const filtered = posts.filter((p) => {
-                return p.title.toLowerCase().includes(query);
+            fetchPost();
+        }else{
+            const filtered = posts.filter((post) => {
+                return post.title.toLowerCase().includes(query);
             });
             setPosts(filtered);
         }
@@ -35,22 +38,20 @@ function Posts() {
 
     const handleSortChange = (e) => {
         const sortValue = e.target.value;
-        let sortedPosts = [...posts]; // Assuming filteredPosts contains the initial posts data
-        console.log(sortValue);
+        const sortedPosts = [...posts];
+
         if (sortValue === "Newest") {
             sortedPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
-        } else if (sortValue === "Oldest") {
+
+        }else if (sortValue === "Oldest") {
             sortedPosts.sort((a, b) => new Date(a.date) - new Date(b.date));
-        } else if (sortValue === "Active" || sortValue === "Draft" || sortValue === "Disabled") {
-            sortedPosts = posts.filter((post) => post.status === sortValue);
-        } else if (sortValue === "") {
-            fetchPosts();
         }
-
-        console.log(sortedPosts);
-
         setPosts(sortedPosts);
     };
+
+    useEffect(() => {
+        fetchPost();
+    },[]);
 
     return (
         <>
@@ -63,10 +64,10 @@ function Posts() {
                                 <div className="card-header bg-transparent border-bottom p-3">
                                     <div className="d-sm-flex justify-content-between align-items-center">
                                         <h5 className="mb-2 mb-sm-0">
-                                            All Blog Posts <span className="badge bg-primary bg-opacity-10 text-primary">{posts?.length}</span>
+                                            Tous vos articles de blog <span className="badge bg-primary bg-opacity-10 text-primary">{posts?.length}</span>
                                         </h5>
                                         <a href="#" className="btn btn-sm btn-primary mb-0">
-                                            Add New <i className="fas fa-plus"></i>
+                                            Ajouter un article <i className="fas fa-plus"></i>
                                         </a>
                                     </div>
                                 </div>
@@ -74,7 +75,7 @@ function Posts() {
                                     <div className="row g-3 align-items-center justify-content-between mb-3">
                                         <div className="col-md-8">
                                             <form className="rounded position-relative">
-                                                <input onChange={(e) => handleSearch(e)} className="form-control pe-5 bg-transparent" type="search" placeholder="Search Articles" aria-label="Search" />
+                                                <input onChange={(e)=> handleSearch(e)} className="form-control pe-5 bg-transparent" type="search" placeholder="Rechercher un article" aria-label="Search" />
                                                 <button className="btn bg-transparent border-0 px-2 py-0 position-absolute top-50 end-0 translate-middle-y" type="submit">
                                                     <i className="fas fa-search fs-6 " />
                                                 </button>
@@ -83,9 +84,13 @@ function Posts() {
                                         <div className="col-md-3">
                                             <form>
                                                 <select onChange={handleSortChange} className="form-select z-index-9 bg-transparent" aria-label=".form-select-sm">
-                                                    <option value="">Sort by</option>
-                                                    <option value={"Newest"}>Newest</option>
-                                                    <option value={"Oldest"}>Oldest</option>
+                                                    <option value="">Trier par</option>
+                                                    <option value={"Newest"}>Nouveau</option>
+                                                    <option value={"Oldest"}>Ancien</option>
+                                                    {/*<option>------</option>*/}
+                                                    {/*<option>publié</option>*/}
+                                                    {/*<option>Brouillon</option>*/}
+                                                    {/*<option>Disabled</option>*/}
                                                 </select>
                                             </form>
                                         </div>
@@ -98,19 +103,16 @@ function Posts() {
                                             <thead className="table-dark">
                                             <tr>
                                                 <th scope="col" className="border-0 rounded-start">
-                                                    Image
-                                                </th>
-                                                <th scope="col" className="border-0 rounded-start">
-                                                    Article Name
+                                                    Nom de l'article
                                                 </th>
                                                 <th scope="col" className="border-0">
-                                                    Views
+                                                    Vues
                                                 </th>
                                                 <th scope="col" className="border-0">
-                                                    Published Date
+                                                    Date de publication
                                                 </th>
                                                 <th scope="col" className="border-0">
-                                                    Category
+                                                    Catégorie
                                                 </th>
                                                 <th scope="col" className="border-0">
                                                     Status
@@ -121,44 +123,42 @@ function Posts() {
                                             </tr>
                                             </thead>
                                             <tbody className="border-top-0">
-                                            {posts?.map((p, index) => (
-                                                <tr>
-                                                    <td>
-                                                        <Link to={`/detail/${p.slug}/`}>
-                                                            <img src={p.image} style={{ width: "100px", height: "100px", objectFit: "cover", borderRadius: "10px" }} alt="" />
-                                                        </Link>
-                                                    </td>
+                                            {posts?.map((post, index) => (
+                                                <tr key={index}>
                                                     <td>
                                                         <h6 className="mt-2 mt-md-0 mb-0 ">
-                                                            <Link to={`/detail/${p.slug}/`} className="text-dark text-decoration-none">
-                                                                {p?.title}
-                                                            </Link>
+                                                            <a href="#" className="text-dark text-decoration-none">
+                                                                {post.title}
+                                                            </a>
                                                         </h6>
                                                     </td>
                                                     <td>
                                                         <h6 className="mb-0">
                                                             <a href="#" className="text-dark text-decoration-none">
-                                                                {p.view} Views
+                                                                {post.view} Views
                                                             </a>
                                                         </h6>
                                                     </td>
-                                                    <td>{moment(p.date).format("DD MMM, YYYY")}</td>
-                                                    <td>{p.category?.title}</td>
+                                                    <td>{moment(post.date).format("DD MM YYYY")}.</td>
+                                                    <td>{post.category.title}</td>
                                                     <td>
-                                                        <span className="badge bg-dark bg-opacity-10 text-dark mb-2">{p.status}</span>
+                                                        <span className="badge bg-dark  text-white mb-2">{post.status}</span>
                                                     </td>
                                                     <td>
                                                         <div className="d-flex gap-2">
-                                                            <Link to={`/edit-post/${p.id}/`} className="btn btn-primary btn-round mb-0" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
-                                                                <i className="bi bi-pencil-square" />
-                                                            </Link>
-                                                            <Link className="btn-round mb-0 btn btn-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">
+                                                            <a href="#" className="btn-round mb-0 btn btn-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">
                                                                 <i className="bi bi-trash" />
-                                                            </Link>
+                                                            </a>
+                                                            <a href="dashboard-post-edit.html" className="btn btn-primary btn-round mb-0" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
+                                                                <i className="bi bi-pencil-square" />
+                                                            </a>
                                                         </div>
                                                     </td>
                                                 </tr>
                                             ))}
+
+
+
                                             </tbody>
                                         </table>
                                     </div>
@@ -168,7 +168,7 @@ function Posts() {
                     </div>
                 </div>
             </section>
-            <Footer />
+            {/*<Footer />*/}
         </>
     );
 }
