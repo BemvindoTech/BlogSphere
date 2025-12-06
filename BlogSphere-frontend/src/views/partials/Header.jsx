@@ -4,7 +4,7 @@ import {  useAuthStore} from "../../store/auth";
 
 function Header() {
     const [isLoggedIn, user] = useAuthStore((state) => [state.isLoggedIn, state.user]);
-    console.log(isLoggedIn());
+    // console.log(isLoggedIn());
     return (
         <header className="navbar-dark bg-dark navbar-sticky header-static">
             <nav className="navbar navbar-expand-lg">

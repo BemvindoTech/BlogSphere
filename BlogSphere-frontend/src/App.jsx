@@ -17,7 +17,7 @@ import Posts from "./views/dashboard/Posts";
 // import EditPost from "./views/dashboard/EditPost";
 import Comments from "./views/dashboard/Comments";
 import Notifications from "./views/dashboard/Notifications";
-// import Profile from "./views/dashboard/Profile";
+import Profile from "./views/dashboard/Profile";
 import MainWrapper from "../src/layouts/MainWrapper";
 
 function App() {
@@ -46,7 +46,7 @@ function App() {
                  {/*<Route path="/edit-post/:id/" element={<EditPost />} />*/}
                  <Route path="/comments/" element={<Comments />} />
                  <Route path="/notifications/" element={<Notifications />} />
-                 {/*<Route path="/profile/" element={<Profile />} />*/}
+                 <Route path="/profile/" element={<Profile />} />
 
                  {/* Pages */}
                  <Route path="/about/" element={<About />} />
