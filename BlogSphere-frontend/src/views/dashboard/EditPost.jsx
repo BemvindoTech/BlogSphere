@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import Header from "../partials/Header";
 import Footer from "../partials/Footer";
 import {Link, useNavigate, useParams} from "react-router-dom";
@@ -37,7 +37,7 @@ function AddPost() {
     },[]);
 
     const handleCreatePostChange = (event) => {
-        setCreatePost({
+        setEditPost({
             ...post,
             [event.target.name]: event.target.value,
         });
@@ -47,7 +47,7 @@ function AddPost() {
         const selectedFile = event.target.files[0];
         const reader = new FileReader();
 
-        setCreatePost({
+        setEditPost({
             ...post,
             image : {
                 file : event.target.files[0],
@@ -81,11 +81,11 @@ function AddPost() {
         formData.append("image", post.image.file);
         formData.append("description", post.description);
         formData.append("tags", post.tags);
-        formData.append("category", post.category);
+        formData.append("category", post.category.id);
         formData.append("post_status", post.status);
 
         try {
-            const response = await apiInstance.post(`author/dashboard/post-create/`, formData, {
+            const response = await apiInstance.patch(`author/dashboard/post-detail/${userId}/${param.id}/`, formData, {
                 headers: {
                     'content-type': 'multipart/form-data',
                 },
@@ -93,7 +93,7 @@ function AddPost() {
             setIsLoading(false);
             Swal.fire({
                 icon: "success",
-                title: "Article crée avec succés",
+                title: "Article mis à jour avec succés",
             });
             navigate("/posts/");
         } catch(error) {
@@ -132,55 +132,73 @@ function AddPost() {
                                         </div>
                                     </div>
                                 </section>
-                                <section className="pb-8 mt-5">
+                                <form onSubmit={handleCreatePost} className="pb-8 mt-5">
                                     <div className="card mb-3">
                                         {/* Basic Info Section */}
                                         <div className="card-header border-bottom px-4 py-3">
-                                            <h4 className="mb-0">Basic Information</h4>
+                                            <h4 className="mb-0">Informations de l'article</h4>
                                         </div>
                                         <div className="card-body">
                                             <label htmlFor="postTHumbnail" className="form-label">
-                                                Preview
+                                                Apercue
                                             </label>
-                                            <img style={{ width: "100%", height: "330px", objectFit: "cover", borderRadius: "10px" }} className="mb-4" src="https://www.eclosio.ong/wp-content/uploads/2018/08/default.png" alt="" />
+                                            <img style={{ width: "100%", height: "330px", objectFit: "cover", borderRadius: "10px" }} className="mb-4" src={imagePreview || post.image} alt="" />
                                             <div className="mb-3">
-                                                <label htmlFor="postTHumbnail" className="form-label">
-                                                    Thumbnail
+                                                <label htmlFor="postTHumbnail"  className="form-label">
+                                                    Vignette
                                                 </label>
-                                                <input id="postTHumbnail" className="form-control" type="file" />
+                                                <input onChange={handleFileChange} id="postTHumbnail" name="file" className="form-control" type="file" />
                                             </div>
 
                                             <div className="mb-3">
-                                                <label className="form-label">Title</label>
-                                                <input className="form-control" type="text" placeholder="" />
-                                                <small>Write a 60 character post title.</small>
+                                                <label className="form-label">Titre</label>
+                                                <input className="form-control" value={post.title} name="title" onChange={handleCreatePostChange} type="text" placeholder="" />
+                                                <small>Ecrivez le titre de l'article.</small>
                                             </div>
                                             <div className="mb-3">
-                                                <label className="form-label">Posts category</label>
-                                                <select className="form-select">
+                                                <label className="form-label">Catégorie</label>
+                                                <select className="form-select" value={post.category.id} onChange={handleCreatePostChange} name="category">
                                                     <option value="">-------------</option>
-                                                    <option value="React">Lifstyle</option>
-                                                    <option value="Javascript">Fashion</option>
-                                                    <option value="HTML">Tech</option>
-                                                    <option value="Vue">Health</option>
-                                                    <option value="Gulp">Entertainment</option>
+                                                    {categoryList.map((category, index) => (
+                                                        <option key={index} value={category.id}>
+                                                            {category.title}
+                                                        </option>
+                                                    ))}
                                                 </select>
-                                                <small>Help people find your posts by choosing categories that represent your post.</small>
+                                                <small>Aidez vos lecteurs à trouver vos articles grace à sa catégorie.</small>
                                             </div>
 
                                             <div className="mb-3">
-                                                <label className="form-label">Post Description</label>
-                                                <textarea name="" className="form-control" id="" cols="30" rows="10"></textarea>
-                                                <small>A brief summary of your posts.</small>
+                                                <label className="form-label">Description de l'article</label>
+                                                <textarea name="description" value={post.description} onChange={handleCreatePostChange} className="form-control" id="" cols="30" rows="10"></textarea>
+                                                <small>Le contenu de votre article.</small>
+                                            </div>
+                                            <div>
+                                                <label htmlFor="" className="form-label">Statut</label>
+                                                <select className="form-select" value={post.status} name="status" onChange={handleCreatePostChange} id="" >
+                                                    <option value="Active">Activer</option>
+                                                    <option value="Draft">Brouillon</option>
+                                                    <option value="Disabled">Désactiver</option>
+                                                </select>
                                             </div>
                                             <label className="form-label">Tag</label>
-                                            <input className="form-control" type="number" placeholder="health, medicine, fitness" />
+                                            <input onChange={handleCreatePostChange} value={post.tags} name="tags" className="form-control" type="text" placeholder="sante, éducation, fitness" />
                                         </div>
                                     </div>
-                                    <button className="btn btn-lg btn-success w-100 mt-2" type="button">
-                                        Update Post <i className="fas fa-check-circle"></i>
-                                    </button>
-                                </section>
+                                    {isLoading === true ? (
+                                        <>
+                                            <button  disabled className="btn btn-lg btn-secondary w-100 mt-2" >
+                                                Modification de l'article <i className="fas fa-spinner fa-spin"></i>
+                                            </button>
+                                        </>
+                                    ) : (
+                                        <>
+                                            <button className="btn btn-lg btn-success w-100 mt-2" type="submit">
+                                                Modifier l'article <i className="fas fa-check-circle"></i>
+                                            </button>
+                                        </>
+                                    )}
+                                </form>
                             </>
                         </div>
                     </div>
