@@ -319,12 +319,16 @@ class DashboardPostEditAPIView(generics.RetrieveUpdateAPIView):
     serializer_class = api_serializer.PostSerializer
     permission_classes = [AllowAny]
 
+    lookup_url_kwarg = 'post_id'
+
+    lookup_field = 'id'
+
     def get_queryset(self):
         user_id = self.kwargs['user_id']
         post_id = self.kwargs['post_id']
         user = api_models.User.objects.get(id=user_id)
 
-        return api_models.Post.objects.get(id=post_id,user=user)
+        return api_models.Post.objects.filter(user__id=user_id)
 
     def update(self, request, *args, **kwargs):
         post_instance = self.get_object()

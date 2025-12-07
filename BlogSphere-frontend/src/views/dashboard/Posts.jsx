@@ -18,7 +18,6 @@ function Posts() {
         try {
             const post_res = await apiInstance.get(`author/dashboard/post-list/${user_id}/`);
             setPosts(post_res?.data);
-            console.log(post_res?.data);
         }catch (error) {
             console.log(error);
         }
@@ -150,9 +149,9 @@ function Posts() {
                                                             <a href="#" className="btn-round mb-0 btn btn-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">
                                                                 <i className="bi bi-trash" />
                                                             </a>
-                                                            <a href="dashboard-post-edit.html" className="btn btn-primary btn-round mb-0" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
+                                                            <Link to={`/edit-post/${post?.id}/`} className="btn btn-primary btn-round mb-0" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
                                                                 <i className="bi bi-pencil-square" />
-                                                            </a>
+                                                            </Link>
                                                         </div>
                                                     </td>
                                                 </tr>

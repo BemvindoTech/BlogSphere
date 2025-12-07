@@ -14,7 +14,7 @@ import CreatePassword from "./views/auth/CreatePassword";
 import Dashboard from "./views/dashboard/Dashboard";
 import Posts from "./views/dashboard/Posts";
 import AddPost from "./views/dashboard/AddPost";
-// import EditPost from "./views/dashboard/EditPost";
+import EditPost from "./views/dashboard/EditPost";
 import Comments from "./views/dashboard/Comments";
 import Notifications from "./views/dashboard/Notifications";
 import Profile from "./views/dashboard/Profile";
@@ -44,7 +44,7 @@ function App() {
                  <Route path="/posts/" element={<Posts />} />
                  <Route path="/posts/:slug/" element={<Detail />} />
                  <Route path="/add-post/" element={<AddPost />} />
-                 {/*<Route path="/edit-post/:id/" element={<EditPost />} />*/}
+                 <Route path="/edit-post/:id/" element={<EditPost />} />
                  <Route path="/comments/" element={<Comments />} />
                  <Route path="/notifications/" element={<Notifications />} />
                  <Route path="/profile/" element={<Profile />} />

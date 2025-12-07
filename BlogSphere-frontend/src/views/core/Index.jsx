@@ -74,10 +74,10 @@ function Index() {
                                     </div>
                                     <div className="card-body px-3 pt-3">
                                         <h4 className="card-title">
-                                            <a href={/post.slug/}
+                                            <Link to={`${post.slug}`}
                                                   className="btn-link text-reset stretched-link fw-bold text-decoration-none">
                                                 {post.title}
-                                            </a>
+                                            </Link>
                                         </h4>
                                         {/*<button style={{border: "none", background: "none"}}>*/}
                                         {/*    <i className="fas fa-bookmark text-danger"></i>*/}
