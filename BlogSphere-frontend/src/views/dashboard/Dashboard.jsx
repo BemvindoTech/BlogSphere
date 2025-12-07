@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import Header from "../partials/Header";
 import Footer from "../partials/Footer";
-import {json, Link} from "react-router-dom";
+import { Link} from "react-router-dom";
 import apiInstance from "../../utils/axios";
 import useUserData from "../../plugin/useUserData";
 
@@ -270,15 +270,16 @@ function Dashboard() {
                                                     <option>Nouveau</option>
                                                     <option>Ancien</option>
                                                     <option>------</option>
-                                                    <option>publié</option>
-                                                    <option>Brouillon</option>
-                                                    {/*<option>Disabled</option>*/}
+
+                                                    {/*A gerer ultérieurement*/}
+
+                                                    {/*<option>publié</option>*/}
+                                                    {/*<option>Brouillon</option>*/}
+                                                    {/*/!*<option>Disabled</option>*!/*/}
                                                 </select>
                                             </form>
                                         </div>
                                     </div>
-                                    {/* Search and select END */}
-                                    {/* Blog list table START */}
                                     <div className="table-responsive border-0">
                                         <table className="table align-middle p-4 mb-0 table-hover table-shrink">
                                             {/* Table head */}
@@ -305,42 +306,39 @@ function Dashboard() {
                                             </tr>
                                             </thead>
                                             <tbody className="border-top-0">
-                                            {posts?.map((post, index) => (
-                                                <tr key={index}>
-                                                    <td>
-                                                        <h6 className="mt-2 mt-md-0 mb-0 ">
-                                                            <a href="#" className="text-dark text-decoration-none">
-                                                                {post.title}
-                                                            </a>
-                                                        </h6>
-                                                    </td>
-                                                    <td>
-                                                        <h6 className="mb-0">
-                                                            <a href="#" className="text-dark text-decoration-none">
-                                                                {post.view} Views
-                                                            </a>
-                                                        </h6>
-                                                    </td>
-                                                    <td>{moment(post.date).format("DD MM YYYY")}.</td>
-                                                    <td>{post.category.title}</td>
-                                                    <td>
-                                                        <span className="badge bg-dark  text-white mb-2">{post.status}</span>
-                                                    </td>
-                                                    <td>
-                                                        <div className="d-flex gap-2">
-                                                            <a href="#" className="btn-round mb-0 btn btn-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">
-                                                                <i className="bi bi-trash" />
-                                                            </a>
-                                                            <a href="dashboard-post-edit.html" className="btn btn-primary btn-round mb-0" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
-                                                                <i className="bi bi-pencil-square" />
-                                                            </a>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            ))}
-
-
-
+                                                {posts?.map((post, index) => (
+                                                    <tr key={index}>
+                                                        <td>
+                                                            <h6 className="mt-2 mt-md-0 mb-0 ">
+                                                                <a href="#" className="text-dark text-decoration-none">
+                                                                    {post.title}
+                                                                </a>
+                                                            </h6>
+                                                        </td>
+                                                        <td>
+                                                            <h6 className="mb-0">
+                                                                <a href="#" className="text-dark text-decoration-none">
+                                                                    {post.view} Views
+                                                                </a>
+                                                            </h6>
+                                                        </td>
+                                                        <td>{moment(post.date).format("DD MM YYYY")}.</td>
+                                                        <td>{post.category.title}</td>
+                                                        <td>
+                                                            <span className="badge bg-dark  text-white mb-2">{post.status}</span>
+                                                        </td>
+                                                        <td>
+                                                            <div className="d-flex gap-2">
+                                                                <a href="#" className="btn-round mb-0 btn btn-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">
+                                                                    <i className="bi bi-trash" />
+                                                                </a>
+                                                                <a href="dashboard-post-edit.html" className="btn btn-primary btn-round mb-0" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
+                                                                    <i className="bi bi-pencil-square" />
+                                                                </a>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                ))}
                                             </tbody>
                                         </table>
                                     </div>

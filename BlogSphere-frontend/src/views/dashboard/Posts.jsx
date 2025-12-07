@@ -127,9 +127,10 @@ function Posts() {
                                                 <tr key={index}>
                                                     <td>
                                                         <h6 className="mt-2 mt-md-0 mb-0 ">
-                                                            <a href="#" className="text-dark text-decoration-none">
+                                                            <Link to={post.slug}
+                                                                  className="text-dark text-decoration-none">
                                                                 {post.title}
-                                                            </a>
+                                                            </Link>
                                                         </h6>
                                                     </td>
                                                     <td>

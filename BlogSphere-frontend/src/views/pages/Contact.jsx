@@ -9,22 +9,18 @@ function Contact() {
                 <div className="container">
                     <div className="row">
                         <div className="col-md-9 mx-auto text-center">
-                            <h1 className="fw-bold">Contact us</h1>
+                            <h1 className="fw-bold">Contacts</h1>
                         </div>
                     </div>
                 </div>
             </section>
-            {/* =======================
-Inner intro END */}
-            {/* =======================
-Contact info START */}
             <section className="pt-4">
                 <div className="container">
                     <div className="row">
                         <div className="col-xl-9 mx-auto">
                             <iframe
                                 className="w-100 h-300 grayscale"
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.9663095343008!2d-74.00425878428698!3d40.74076684379132!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c259bf5c1654f3%3A0xc80f9cfce5383d5d!2sGoogle!5e0!3m2!1sen!2sin!4v1586000412513!5m2!1sen!2sin"
+                                src="https://www.google.com/maps/@14.7719074,-17.4097391,17.74z?entry=ttu&g_ep=EgoyMDI1MTIwMi4wIKXMDSoASAFQAw%3D%3D"
                                 height={500}
                                 style={{ border: 0 }}
                                 aria-hidden="false"
@@ -32,48 +28,48 @@ Contact info START */}
                             />
                             <div className="row mt-5">
                                 <div className="col-sm-6 mb-5 mb-sm-0">
-                                    <h3>Address Informations</h3>
-                                    <address>2492 Centennial NW, Acworth, GA, 30102</address>
+                                    <h3>Adresse</h3>
+                                    <address>Dakar - Sénégal </address>
                                     <p>
-                                        Call:{" "}
+                                        Téléphone :{" "}
                                         <a href="#" className="text-reset">
-                                            <u>+123 4567 890 (Toll-free)</u>
+                                            <u>77 777 77 77</u>
                                         </a>
                                     </p>
                                     <p>
                                         Email:{" "}
-                                        <a href="#" className="text-reset">
-                                            <u>desphixs@gmail.com</u>
+                                        <a  className="text-reset">
+                                            <u>bienvenumendy1@gmail.com</u>
                                         </a>
                                     </p>
                                     <p>
-                                        Support time: Monday to Saturday
+                                        Disponible: du Vendredi au Dimanche
                                         <br />
-                                        9:30 am to 6:00 pm
+                                        9:30  - 20:00
                                     </p>
                                 </div>
-                                <div className="col-sm-6">
-                                    <h3>Contact Information </h3>
-                                    <p>Get in touch with us to see how we can help you with your query</p>
-                                    <address>750 Sing Sing Rd, Horseheads, NY, 14845</address>
-                                    <p>
-                                        Call:{" "}
-                                        <a href="#" className="text-reset">
-                                            <u>+123 4567 890 (Toll-free)</u>
-                                        </a>
-                                    </p>
-                                    <p>
-                                        Email:{" "}
-                                        <a href="#" className="text-reset">
-                                            <u>desphixs@gmail.com</u>
-                                        </a>
-                                    </p>
-                                    <p>
-                                        Support time: Monday to Saturday
-                                        <br />
-                                        9:00 am to 5:30 pm
-                                    </p>
-                                </div>
+                                {/*<div className="col-sm-6">*/}
+                                {/*    <h3>Contact Information </h3>*/}
+                                {/*    */}
+                                {/*    <address>750 Sing Sing Rd, Horseheads, NY, 14845</address>*/}
+                                {/*    <p>*/}
+                                {/*        Téléphone{" "}*/}
+                                {/*        <a href="#" className="text-reset">*/}
+                                {/*            <u>+221 77 241 71 26</u>*/}
+                                {/*        </a>*/}
+                                {/*    </p>*/}
+                                {/*    <p>*/}
+                                {/*        Email:{" "}*/}
+                                {/*        <a href="#" className="text-reset">*/}
+                                {/*            <u>bienvenumendy1@gmail.com</u>*/}
+                                {/*        </a>*/}
+                                {/*    </p>*/}
+                                {/*    <p>*/}
+                                {/*        Disponible: du lundi au Vendredi*/}
+                                {/*        <br />*/}
+                                {/*        9:30  - 20:00*/}
+                                {/*    </p>*/}
+                                {/*</div>*/}
                             </div>
                             <hr className="my-5" />
                             <div className="row mb-5">

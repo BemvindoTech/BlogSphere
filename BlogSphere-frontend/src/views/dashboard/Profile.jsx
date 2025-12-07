@@ -1,10 +1,8 @@
 import React, {useEffect, useState} from "react";
 import Header from "../partials/Header";
 import Footer from "../partials/Footer";
-import {json, Link} from "react-router-dom";
 import apiInstance from "../../utils/axios";
 import useUserData from "../../plugin/useUserData";
-import moment from "moment";
 import Toast from "../../plugin/Toast.js";
 
 function Profile() {
