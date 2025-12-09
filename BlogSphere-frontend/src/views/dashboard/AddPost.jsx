@@ -115,7 +115,7 @@ function AddPost() {
                                                     <div>
                                                         <Link to="/posts/" className="btn" style={{ backgroundColor: "white" }}>
                                                             {" "}
-                                                            <i className="fas fa-arrow-left"></i> Retourner au articles
+                                                            <i className="fas fa-arrow-left"></i> Retourner aux articles
                                                         </Link>
 
                                                         <a href="#" className="btn btn-dark ms-2">

@@ -214,7 +214,7 @@ function Index() {
                                         <ul className="mt-3 list-style-none" style={{ listStyle: "none" }}>
                                             <li>
                                                 <a href="#" className="text-dark text-decoration-none">
-                                                    <i className="fas fa-user"></i> {p.profile?.full_name}
+                                                    <i className="fas fa-user"></i> {p.user?.full_name}
                                                 </a>
                                             </li>
                                             <li className="mt-2">

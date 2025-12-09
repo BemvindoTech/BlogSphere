@@ -337,7 +337,7 @@ function Dashboard() {
                                                         <td>
                                                             <h6 className="mb-0">
                                                                 <a href="#" className="text-dark text-decoration-none">
-                                                                    {post.view} Views
+                                                                    {post.view} Vue(s)
                                                                 </a>
                                                             </h6>
                                                         </td>
@@ -351,9 +351,9 @@ function Dashboard() {
                                                                 <a href="#" className="btn-round mb-0 btn btn-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete">
                                                                     <i className="bi bi-trash" />
                                                                 </a>
-                                                                <a href="dashboard-post-edit.html" className="btn btn-primary btn-round mb-0" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
+                                                                <Link to={`/edit-post/${post?.id}/`}  className="btn btn-primary btn-round mb-0" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
                                                                     <i className="bi bi-pencil-square" />
-                                                                </a>
+                                                                </Link>
                                                             </div>
                                                         </td>
                                                     </tr>

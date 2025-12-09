@@ -17,6 +17,8 @@ function Detail() {
     const fetchPost = async () => {
         const response = await apiInstance.get(`post/detail/${param.slug}/`);
         setPost(response.data);
+        console.log(response.data);
+        console.log(response.data.user.full_name);
 
         const tagArray = response?.data?.tags?.split(",");
         setTags(tagArray);
@@ -107,7 +109,7 @@ function Detail() {
                                         <img className="avatar-img" style={{ width: "100px", height: "100px", objectFit: "cover", borderRadius: "50%" }} src={post?.profile?.image} alt="avatar" />
                                     </div>
                                     <a href="#" className="h5 fw-bold text-dark text-decoration-none mt-2 mb-0 d-block">
-                                        {post?.profile?.full_name}
+                                        {post?.user?.full_name}
                                     </a>
                                     <p>{post?.profile?.bio}</p>
                                 </div>

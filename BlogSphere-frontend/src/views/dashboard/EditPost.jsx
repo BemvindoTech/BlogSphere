@@ -115,16 +115,16 @@ function AddPost() {
                                             <div className="offset-lg-1 col-lg-10 col-md-12 col-12">
                                                 <div className="d-lg-flex align-items-center justify-content-between">
                                                     <div className="mb-4 mb-lg-0">
-                                                        <h1 className="text-white mb-1">Edit Blog Post</h1>
-                                                        <p className="mb-0 text-white lead">Use the article builder below to edit your article.</p>
+                                                        <h1 className="text-white mb-1">Modifier l'article</h1>
+                                                        <p className="mb-0 text-white lead">Modifier votre article en la rendant meilleur.</p>
                                                     </div>
                                                     <div>
-                                                        <Link to="/instructor/posts/" className="btn" style={{ backgroundColor: "white" }}>
+                                                        <Link to="/posts/" className="btn" style={{ backgroundColor: "white" }}>
                                                             {" "}
-                                                            <i className="fas fa-arrow-left"></i> Back to Posts
+                                                            <i className="fas fa-arrow-left"></i> Retouner aux articles
                                                         </Link>
-                                                        <a href="instructor-posts.html" className="btn btn-dark ms-2">
-                                                            Save Changes <i className="fas fa-check-circle"></i>
+                                                        <a href="/posts/" className="btn btn-dark ms-2">
+                                                            Enregistrer <i className="fas fa-check-circle"></i>
                                                         </a>
                                                     </div>
                                                 </div>
