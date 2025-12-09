@@ -154,125 +154,14 @@ function Detail() {
                                 </button>
                             </div>
                         </div>
-                        {/* Left sidebar END */}
-                        {/* Main Content START */}
+
                         <div className="col-lg-10 mb-5">
                             <p>
                                 {post.description}
 
                             </p>
                             <hr/>
-                            {/*<div className="mt-5">*/}
-                            {/*    <h2 className="my-3">*/}
-                            {/*        <i className="bi bi-symmetry-vertical me-2" />*/}
-                            {/*        Related post*/}
-                            {/*    </h2>*/}
-                            {/*    <section className="pt-4 pb-0">*/}
-                            {/*        <div className="container">*/}
-                            {/*            <div className="row">*/}
-                            {/*                <div className="col-sm-6 col-lg-3">*/}
-                            {/*                    <div className="card mb-4">*/}
-                            {/*                        <div className="card-fold position-relative">*/}
-                            {/*                            <img className="card-img" style={{ width: "100%", height: "160px", objectFit: "cover" }} src="https://awcdn1.ahmad.works/writing/wp-content/uploads/2015/05/kitchen-and-dining-room-P5JHHM6.jpg" alt="Card image" />*/}
-                            {/*                        </div>*/}
-                            {/*                        <div className="card-body px-3 pt-3">*/}
-                            {/*                            <h4 className="card-title">*/}
-                            {/*                                <Link to={`/7-common-mistakes-everyone-makes-while-travelling/`} className="btn-link text-reset stretched-link fw-bold text-decoration-none">*/}
-                            {/*                                    7 common mistakes everyone makes while traveling*/}
-                            {/*                                </Link>*/}
-                            {/*                            </h4>*/}
-                            {/*                        </div>*/}
-                            {/*                    </div>*/}
-                            {/*                </div>*/}
 
-                            {/*                <div className="col-sm-6 col-lg-3">*/}
-                            {/*                    <div className="card mb-4">*/}
-                            {/*                        <div className="card-fold position-relative">*/}
-                            {/*                            <img className="card-img" style={{ width: "100%", height: "160px", objectFit: "cover" }} src="https://awcdn1.ahmad.works/writing/wp-content/uploads/2015/05/black-woman-smiling-with-hands-in-hair-PMCFL93-1.jpg" alt="Card image" />*/}
-                            {/*                        </div>*/}
-                            {/*                        <div className="card-body px-3 pt-3">*/}
-                            {/*                            <h4 className="card-title">*/}
-                            {/*                                <a href="post-single.html" className="btn-link text-reset stretched-link fw-bold text-decoration-none">*/}
-                            {/*                                    7 common mistakes everyone makes while traveling*/}
-                            {/*                                </a>*/}
-                            {/*                            </h4>*/}
-                            {/*                        </div>*/}
-                            {/*                    </div>*/}
-                            {/*                </div>*/}
-
-                            {/*                <div className="col-sm-6 col-lg-3">*/}
-                            {/*                    <div className="card mb-4">*/}
-                            {/*                        <div className="card-fold position-relative">*/}
-                            {/*                            <img className="card-img" style={{ width: "100%", height: "160px", objectFit: "cover" }} src="https://awcdn1.ahmad.works/writing/wp-content/uploads/2015/05/flat-with-touch-of-creativity-PX387LV-2.jpg" alt="Card image" />*/}
-                            {/*                        </div>*/}
-                            {/*                        <div className="card-body px-3 pt-3">*/}
-                            {/*                            <h4 className="card-title">*/}
-                            {/*                                <a href="post-single.html" className="btn-link text-reset stretched-link fw-bold text-decoration-none">*/}
-                            {/*                                    7 common mistakes everyone makes while traveling*/}
-                            {/*                                </a>*/}
-                            {/*                            </h4>*/}
-                            {/*                        </div>*/}
-                            {/*                    </div>*/}
-                            {/*                </div>*/}
-
-                            {/*                <div className="col-sm-6 col-lg-3">*/}
-                            {/*                    <div className="card mb-4">*/}
-                            {/*                        <div className="card-fold position-relative">*/}
-                            {/*                            <img className="card-img" style={{ width: "100%", height: "160px", objectFit: "cover" }} src="https://awcdn1.ahmad.works/writing/wp-content/uploads/2015/05/young-handsome-afro-black-man-going-upstairs-from-PJWPWPR-2.jpg" alt="Card image" />*/}
-                            {/*                        </div>*/}
-                            {/*                        <div className="card-body px-3 pt-3">*/}
-                            {/*                            <h4 className="card-title">*/}
-                            {/*                                <a href="post-single.html" className="btn-link text-reset stretched-link fw-bold text-decoration-none">*/}
-                            {/*                                    7 common mistakes everyone makes while traveling*/}
-                            {/*                                </a>*/}
-                            {/*                            </h4>*/}
-                            {/*                        </div>*/}
-                            {/*                    </div>*/}
-                            {/*                </div>*/}
-                            {/*            </div>*/}
-                            {/*        </div>*/}
-                            {/*    </section>*/}
-                            {/*</div>*/}
-
-                            {/*<hr />*/}
-                            {/*<div className="d-flex py-4">*/}
-                            {/*    <a href="#">*/}
-                            {/*        <div className="avatar avatar-xxl me-4">*/}
-                            {/*            <img className="avatar-img rounded-circle" src="https://awcdn1.ahmad.works/writing/wp-content/uploads/2015/05/Author.jpg" style={{ width: "100px", height: "100px", objectFit: "cover", borderRadius: "50%" }} alt="avatar" />*/}
-                            {/*        </div>*/}
-                            {/*    </a>*/}
-                            {/*    <div>*/}
-                            {/*        <div className="d-sm-flex align-items-center justify-content-between">*/}
-                            {/*            <div>*/}
-                            {/*                <h4 className="m-0">*/}
-                            {/*                    <a href="#" className="text-dark text-decoration-none">*/}
-                            {/*                        Louis Ferguson*/}
-                            {/*                    </a>*/}
-                            {/*                </h4>*/}
-                            {/*                <small>Writer at Desphixs</small>*/}
-                            {/*            </div>*/}
-                            {/*        </div>*/}
-                            {/*        <p className="my-2">Louis Ferguson is a senior editor for the blogzine and also reports on breaking news based in London. He has written about government, criminal justice, and the role of money in politics since 2015.</p>*/}
-                            {/*        /!* Social icons *!/*/}
-                            {/*        <ul className="nav">*/}
-                            {/*            <li className="nav-item">*/}
-                            {/*                <a className="nav-link ps-0 pe-2 fs-5" href="#">*/}
-                            {/*                    <i className="fab fa-facebook-square" />*/}
-                            {/*                </a>*/}
-                            {/*            </li>*/}
-                            {/*            <li className="nav-item">*/}
-                            {/*                <a className="nav-link px-2 fs-5" href="#">*/}
-                            {/*                    <i className="fab fa-twitter-square" />*/}
-                            {/*                </a>*/}
-                            {/*            </li>*/}
-                            {/*            <li className="nav-item">*/}
-                            {/*                <a className="nav-link px-2 fs-5" href="#">*/}
-                            {/*                    <i className="fab fa-linkedin" />*/}
-                            {/*                </a>*/}
-                            {/*            </li>*/}
-                            {/*        </ul>*/}
-                            {/*    </div>*/}
-                            {/*</div>*/}
 
                             <div className="mt-5">
                                 <h3>{post?.comments?.length} Commentaire(s)</h3>
@@ -296,14 +185,13 @@ function Detail() {
 
 
                             </div>
-                            {/* Comments END */}
-                            {/* Reply START */}
+
                             <div className="bg-light p-3 rounded">
-                                <h3 className="fw-bold">Leave a reply</h3>
-                                <small>Your email address will not be published. Required fields are marked *</small>
+                                <h3 className="fw-bold">Laisser un commentaire</h3>
+                                <small>Votre adresse email ne sera pas publié </small>
                                 <form className="row g-3 mt-2" onSubmit={handleCreateCommentSubmit}>
                                     <div className="col-md-6">
-                                        <label className="form-label">Name *</label>
+                                        <label className="form-label">Nom *</label>
                                         <input onChange={handleCreateCommentChange } name= "full_name" value={createComment.full_name} type="text" className="form-control" aria-label="First name" />
                                     </div>
                                     <div className="col-md-6">
@@ -311,12 +199,12 @@ function Detail() {
                                         <input onChange={handleCreateCommentChange } name= "email" value={createComment.email} type="email" className="form-control" />
                                     </div>
                                     <div className="col-12">
-                                        <label className="form-label">Write Comment *</label>
+                                        <label className="form-label">Votre commentaire *</label>
                                         <textarea onChange={handleCreateCommentChange } name= "comment" value={createComment.comment} className="form-control" rows={4} />
                                     </div>
                                     <div className="col-12">
                                         <button type="submit" className="btn btn-primary">
-                                            Post comment <i className="fas fa-paper-plane"></i>
+                                            Envoyer le commentaire <i className="fas fa-paper-plane"></i>
                                         </button>
                                     </div>
                                 </form>

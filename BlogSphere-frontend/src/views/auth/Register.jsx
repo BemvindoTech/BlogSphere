@@ -50,11 +50,11 @@ function Register() {
                         <div className="card shadow">
                             <div className="card-body p-6">
                                 <div className="mb-4">
-                                    <h1 className="mb-1 fw-bold">Sign up</h1>
+                                    <h1 className="mb-1 fw-bold">Inscription</h1>
                                     <span>
-                                        Already have an account?
+                                        Vous avez deja un compte?
                                         <Link to="/login/" className="ms-1">
-                                            Sign In
+                                           Connexion
                                         </Link>
                                     </span>
                                 </div>
@@ -63,13 +63,13 @@ function Register() {
                                     {/* Username */}
                                     <div className="mb-3">
                                         <label htmlFor="email" className="form-label">
-                                            Full Name
+                                            Nom complet
                                         </label>
                                         <input onChange={handleBioDataChange} value={bioData.full_name} type="text" id="full_name" className="form-control" name="full_name" placeholder="John Doe" required="" />
                                     </div>
                                     <div className="mb-3">
                                         <label htmlFor="email" className="form-label">
-                                            Email Address
+                                            Adresse email
                                         </label>
                                         <input onChange={handleBioDataChange} value={bioData.email} type="email" id="email" className="form-control" name="email" placeholder="johndoe@gmail.com" required="" />
                                     </div>
@@ -77,13 +77,13 @@ function Register() {
                                     {/* Password */}
                                     <div className="mb-3">
                                         <label htmlFor="password" className="form-label">
-                                            Password
+                                            Mot de passe
                                         </label>
                                         <input onChange={handleBioDataChange} value={bioData.password} type="password" id="password" className="form-control" name="password" placeholder="**************" required="" />
                                     </div>
                                     <div className="mb-3">
                                         <label htmlFor="password" className="form-label">
-                                            Confirm Password
+                                            Confirmer votre mot de passe
                                         </label>
                                         <input onChange={handleBioDataChange} value={bioData.password2} type="password" id="password" className="form-control" name="password2" placeholder="**************" required="" />
                                     </div>
@@ -91,11 +91,11 @@ function Register() {
                                         <div className="d-grid">
                                             {isLoading === true ? (
                                                 <button disabled type="submit" className="btn btn-primary">
-                                                    Processing <i className="fas fa-spinner fa-spin"></i>
+                                                    en cour <i className="fas fa-spinner fa-spin"></i>
                                                 </button>
                                                  ) : (
                                                 <button type="submit" className="btn btn-primary">
-                                                    Sign Up <i className="fas fa-user-plus"></i>
+                                                    S'incrire <i className="fas fa-user-plus"></i>
                                                 </button>
                                                 )}
                                         </div>

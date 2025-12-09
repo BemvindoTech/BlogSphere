@@ -18,16 +18,16 @@ function Logout() {
                         <div className="card shadow">
                             <div className="card-body p-6">
                                 <div className="mb-4">
-                                    <h1 className="mb-1 fw-bold">You have been logged out</h1>
-                                    <span>Thanks for visiing our website, come back anytime!</span>
+                                    <h1 className="mb-1 fw-bold">Vous vous etes déconnecté</h1>
+                                    <span>Merci d'avoir consulter le site. Revenez trés bientot!</span>
                                 </div>
                                 <form className="needs-validation mt-5" noValidate="">
                                     <div className="d-grid d-flex">
                                         <Link to="/login/" className="btn btn-primary me-2 w-100">
-                                            Login <i className="fas fa-sign-in-alt"></i>
+                                            Connexion <i className="fas fa-sign-in-alt"></i>
                                         </Link>
                                         <Link to="/register /" type="submit" className="btn btn-primary w-100">
-                                            Register <i className="fas fa-user-plus"></i>
+                                            Inscription <i className="fas fa-user-plus"></i>
                                         </Link>
                                     </div>
                                 </form>

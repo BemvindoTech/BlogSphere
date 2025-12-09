@@ -19,6 +19,7 @@ import Comments from "./views/dashboard/Comments";
 import Notifications from "./views/dashboard/Notifications";
 import Profile from "./views/dashboard/Profile";
 import MainWrapper from "../src/layouts/MainWrapper";
+import AllPosts from "./views/core/AllPosts.jsx";
 
 function App() {
 
@@ -29,7 +30,10 @@ function App() {
              <Routes>
                  <Route path="/" element={<Index />} />
                  <Route path="/:slug/" element={<Detail />} />
-                 <Route path="/category/" element={<Category />} />
+                 <Route path="/category/:slug/" element={<Category />} />
+                 <Route path="/allPosts/" element={<AllPosts />} />
+                 <Route path="/allPosts/:slug" element={<Detail />} />
+                 <Route path="/category/:slug/:slug/" element={<Detail />} />
                  <Route path="/search/" element={<Search />} />
 
                  {/* Authentication */}

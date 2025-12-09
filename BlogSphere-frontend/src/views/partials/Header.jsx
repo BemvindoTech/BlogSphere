@@ -9,23 +9,23 @@ function Header() {
             <nav className="navbar navbar-expand-lg">
                 <div className="container">
                     <Link className="navbar-brand" to="/">
-                        <img className="navbar-brand-item dark-mode-item" src="logo.png" style={{ width: "200px" }} alt="logo" />
+                        <h3 className="ml-5">BlogSpere</h3>
                     </Link>
                     <button className="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="h6 d-none d-sm-inline-block text-white">Menu</span>
                         <span className="navbar-toggler-icon" />
                     </button>
                     <div className="collapse navbar-collapse" id="navbarCollapse">
-                        <div className="nav mt-3 mt-lg-0 px-4 flex-nowrap align-items-center">
-                            <div className="nav-item w-100">
-                                <form className="rounded position-relative">
-                                    <input className="form-control pe-5 bg-light" type="search" placeholder="rechercher des articles" aria-label="Search" />
-                                    <Link to={"/search/"} className="btn bg-transparent border-0 px-2 py-0 position-absolute top-50 end-0 translate-middle-y" type="submit">
-                                        <i className="bi bi-search fs-5"> </i>
-                                    </Link>
-                                </form>
-                            </div>
-                        </div>
+                        {/*<div className="nav mt-3 mt-lg-0 px-4 flex-nowrap align-items-center">*/}
+                        {/*    <div className="nav-item w-100">*/}
+                        {/*        <form className="rounded position-relative">*/}
+                        {/*            <input className="form-control pe-5 bg-light" type="search" placeholder="rechercher des articles" aria-label="Search" />*/}
+                        {/*            <Link to={"/allPosts/"} className="btn bg-transparent border-0 px-2 py-0 position-absolute top-50 end-0 translate-middle-y" type="submit">*/}
+                        {/*                <i className="bi bi-search fs-5"> </i>*/}
+                        {/*            </Link>*/}
+                        {/*        </form>*/}
+                        {/*    </div>*/}
+                        {/*</div>*/}
                         <ul className="navbar-nav navbar-nav-scroll ms-auto">
                             <li className="nav-item dropdown">
                                 <Link className="nav-link active" to="/">
@@ -33,8 +33,8 @@ function Header() {
                                 </Link>
                             </li>
                             <li className="nav-item dropdown">
-                                <Link className="nav-link active" to="/" disabled="">
-                                    Catégorie
+                                <Link className="nav-link active" to="/allPosts/" disabled="">
+                                    Articles
                                 </Link>
                             </li>
                             <li className="nav-item dropdown">
@@ -56,17 +56,12 @@ function Header() {
                             </li>
                             <li className="nav-item dropdown">
                                 <a className="nav-link dropdown-toggle active" href="#" id="pagesMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Tableau de bord
+                                    Mon espace
                                 </a>
                                 <ul className="dropdown-menu" aria-labelledby="pagesMenu">
                                     <li>
-                                        <Link className="dropdown-item" to="/dashboard/">
-                                            <i className="fas fa-user"></i> Tableau de bord
-                                        </Link>
-                                    </li>
-                                    <li>
                                         <Link className="dropdown-item" to="/posts/">
-                                            <i className="bi bi-grid-fill"></i> Articles
+                                            <i className="bi bi-grid-fill"></i> Mes articles
                                         </Link>
                                     </li>
                                     <li>
@@ -76,17 +71,17 @@ function Header() {
                                     </li>
                                     <li>
                                         <Link className="dropdown-item" to="/comments/">
-                                            <i className="bi bi-chat-left-quote-fill"></i> Commentaires
+                                            <i className="bi bi-chat-left-quote-fill"></i> Mes commentaires
                                         </Link>
                                     </li>
                                     <li>
                                         <Link className="dropdown-item" to="/notifications/">
-                                            <i className="fas fa-bell"></i> Notifications
+                                            <i className="fas fa-bell"></i> Mes notifications
                                         </Link>
                                     </li>
                                     <li>
                                         <Link className="dropdown-item" to="/profile/">
-                                            <i className="fas fa-user-gear"></i> Profil
+                                            <i className="fas fa-user-gear"></i> Mon profil
                                         </Link>
                                     </li>
                                 </ul>

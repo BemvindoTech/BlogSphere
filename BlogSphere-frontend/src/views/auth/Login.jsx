@@ -6,6 +6,7 @@ import { useParams, Link, useNavigate } from "react-router-dom";
 import apiInstance from "../../utils/axios";
 import { useAuthStore } from "../../store/auth";
 import { login, register } from "../../utils/auth";
+import Toast from "../../plugin/Toast.js";
 
 function Login() {
     const [bioData, setBioData] = useState({ email: "", password: "" });
@@ -33,9 +34,11 @@ function Login() {
 
         const { error } = await login(bioData.email, bioData.password);
         if (error) {
-            alert(JSON.stringify(error));
+            // alert(JSON.stringify(error));
+            Toast("error", "Vos indentifiant ne correspondant pas");
             resetForm();
         } else {
+            Toast("succes", "Connexion réusie");
             navigate("/");
         }
 
@@ -52,43 +55,39 @@ function Login() {
                         <div className="card shadow">
                             <div className="card-body p-6">
                                 <div className="mb-4">
-                                    <h1 className="mb-1 fw-bold">Sign in</h1>
+                                    <h1 className="mb-1 fw-bold">Connexion</h1>
                                     <span>
-                                        Don’t have an account?
+                                        Si vous n'avez pas encore de compte
                                         <Link to="/register/" className="ms-1">
-                                            Sign up
+                                            S'incrire
                                         </Link>
                                     </span>
                                 </div>
-                                {/* Form */}
                                 <form className="needs-validation" noValidate="" onSubmit={handleLogin}>
-                                    {/* Username */}
                                     <div className="mb-3">
                                         <label htmlFor="email" className="form-label">
-                                            Email Address
+                                            Adresse email
                                         </label>
                                         <input type="email" onChange={handleBioDataChange} value={bioData.email} id="email" className="form-control" name="email" placeholder="johndoe@gmail.com" required="" />
-                                        <div className="invalid-feedback">Please enter valid username.</div>
+                                        <div className="invalid-feedback">Veillez saisir un email valide.</div>
                                     </div>
-                                    {/* Password */}
                                     <div className="mb-3">
                                         <label htmlFor="password" className="form-label">
-                                            Password
+                                            Mot de passe
                                         </label>
                                         <input type="password" onChange={handleBioDataChange} value={bioData.password} id="password" className="form-control" name="password" placeholder="**************" required="" />
-                                        <div className="invalid-feedback">Please enter valid password.</div>
+                                        <div className="invalid-feedback">Veillez saisir un mot de passe valide.</div>
                                     </div>
-                                    {/* Checkbox */}
                                     <div className="d-lg-flex justify-content-between align-items-center mb-4">
                                         <div className="form-check">
                                             <input type="checkbox" className="form-check-input" id="rememberme" required="" />
                                             <label className="form-check-label" htmlFor="rememberme">
-                                                Remember me
+                                                Se souvenir de moi
                                             </label>
-                                            <div className="invalid-feedback">You must agree before submitting.</div>
+                                            <div className="invalid-feedback"></div>
                                         </div>
                                         <div>
-                                            <Link to="/forgot-password/">Forgot your password?</Link>
+                                            <Link to="/forgot-password/"> Mot de passe oublié ?</Link>
                                         </div>
                                     </div>
                                     <div>
@@ -96,12 +95,12 @@ function Login() {
                                             <button className="btn btn-primary w-100" type="submit" disabled={isLoading}>
                                                 {isLoading ? (
                                                     <>
-                                                        <span className="mr-2 ">Processing...</span>
+                                                        <span className="mr-2 ">En cour...</span>
                                                         <i className="fas fa-spinner fa-spin" />
                                                     </>
                                                 ) : (
                                                     <>
-                                                        <span className="mr-2">Sign In </span>
+                                                        <span className="mr-2">Se connecter  </span>
                                                         <i className="fas fa-sign-in-alt" />
                                                     </>
                                                 )}

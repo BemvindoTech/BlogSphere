@@ -3,13 +3,11 @@ import React from "react";
 function Footer() {
     return (
         <footer>
-            <div className="row bg-dark py-5 mx-0 card card-header  flex-row align-items-center text-center text-md-start">
+            <div className="row bg-dark py-5 mx-0 card card-header  flex-row align-items-center text-center text-md-start  ">
                 <div className="col-md-5 mb-3 mb-md-0">
                     <div className="text-primary-hover text-white">
-                        2025 {" "}
-                        <a href="https://youtube.com/" className="text-reset btn-link ms-2 me-2 " target="_blank">
-                            BemvindoTech
-                        </a>
+                        2025 {" "} BlogSphere
+
                         |
                     </div>
                 </div>

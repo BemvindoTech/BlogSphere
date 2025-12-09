@@ -6,10 +6,7 @@ import apiInstance from "../../utils/axios";
 import useUserData from "../../plugin/useUserData";
 import Toast from "../../plugin/Toast";
 import Swal from "sweetalert2";
-import axios from "axios";
 
-import moment from "moment";
-import api from "js-cookie";
 
 function AddPost() {
     const [post, setCreatePost] = useState({image: "", title: "",description: "", category: parseInt(""), tags: "", status: ""});
@@ -120,8 +117,10 @@ function AddPost() {
                                                             {" "}
                                                             <i className="fas fa-arrow-left"></i> Retourner au articles
                                                         </Link>
-                                                        <a href="instructor-posts.html" className="btn btn-dark ms-2">
+
+                                                        <a href="#" className="btn btn-dark ms-2">
                                                             Enrégistrer les modifications <i className="fas fa-check-circle"></i>
+
                                                         </a>
                                                     </div>
                                                 </div>
@@ -172,7 +171,7 @@ function AddPost() {
                                             </div>
                                             <div>
                                                 <label htmlFor="" className="form-label">Statut</label>
-                                                <select className="form-select" name="status" onChange={handleCreatePostChange} id="" >
+                                                <select className="form-select" name="post_status" defaultValue="Active" onChange={handleCreatePostChange} id="" >
                                                     <option value="Active">Activer</option>
                                                     <option value="Draft">Brouillon</option>
                                                     <option value="Disabled">Désactiver</option>

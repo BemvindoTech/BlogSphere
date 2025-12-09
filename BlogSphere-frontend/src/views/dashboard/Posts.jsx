@@ -65,7 +65,7 @@ function Posts() {
                                         <h5 className="mb-2 mb-sm-0">
                                             Tous vos articles de blog <span className="badge bg-primary bg-opacity-10 text-primary">{posts?.length}</span>
                                         </h5>
-                                        <a href="#" className="btn btn-sm btn-primary mb-0">
+                                        <a href="/add-post/" className="btn btn-sm btn-primary mb-0">
                                             Ajouter un article <i className="fas fa-plus"></i>
                                         </a>
                                     </div>

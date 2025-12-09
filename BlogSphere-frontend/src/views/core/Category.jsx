@@ -9,6 +9,7 @@ import apiInstance from "../../utils/axios";
 function Category() {
     const [posts, setPosts] = useState([]);
     const param = useParams();
+    console.log(param);
 
     const fetchPosts = async () => {
         const response = await apiInstance.get(`post/category/posts/${param.slug}/`);
@@ -19,7 +20,7 @@ function Category() {
     }, []);
 
     // Pagination
-    const itemsPerPage = 4;
+    const itemsPerPage = 2;
     const [currentPage, setCurrentPage] = useState(1);
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
@@ -28,8 +29,10 @@ function Category() {
     const pageNumbers = Array.from({ length: totalPages }, (_, index) => index + 1);
 
     return (
-        <div>
+        <div className="flex-grow-1">
             <Header />
+            <div className="d-flex flex-column min-vh-100">
+            <section className="flex-grow-1">
             <section className="p-0">
                 <div className="container">
                     <div className="row">
@@ -38,7 +41,7 @@ function Category() {
                                 <img src="assets/images/adv-3.png" alt="" />
                             </a>
                             <h2 className="text-start d-block mt-1">
-                                <i className="bi bi-grid-fill"></i> {posts[0]?.category?.title} (16 Articles)
+                                <i className="bi bi-grid-fill"></i> {param.slug.toLocaleUpperCase()}
                             </h2>
                         </div>
                     </div>
@@ -57,20 +60,20 @@ function Category() {
                                     <div className="card-body px-3 pt-3">
                                         <h4 className="card-title">
                                             <Link to={`${p.slug}`} className="btn-link text-reset stretched-link fw-bold text-decoration-none">
-                                                {p.title?.slice(0, 32) + "..."}
+                                                {p.title?.slice(0, 15) + "..."}
                                             </Link>
                                         </h4>
                                         <ul className="mt-3 list-style-none" style={{ listStyle: "none" }}>
                                             <li>
                                                 <a href="#" className="text-dark text-decoration-none">
-                                                    <i className="fas fa-user"></i> {p?.profile?.full_name}
+                                                    <i className="fas fa-user"></i> {p?.profile?.full_name || p?.user?.username}
                                                 </a>
                                             </li>
                                             <li className="mt-2">
                                                 <i className="fas fa-calendar"></i> {moment(p.date).format("DD MMM, YYYY")}
                                             </li>
                                             <li className="mt-2">
-                                                <i className="fas fa-eye"></i> {p.view} Views
+                                                <i className="fas fa-eye"></i> {p.view} Vue(s)
                                             </li>
                                         </ul>
                                     </div>
@@ -78,13 +81,13 @@ function Category() {
                             </div>
                         ))}
                     </div>
-
+                    {}
                     <nav className="d-flex mt-5">
                         <ul className="pagination">
                             <li className={`page-item ${currentPage === 1 ? "disabled" : ""}`}>
                                 <button className="page-link me-1" onClick={() => setCurrentPage(currentPage - 1)}>
                                     <i className="ci-arrow-left me-2" />
-                                    Previous
+                                    Précedant
                                 </button>
                             </li>
                         </ul>
@@ -101,7 +104,7 @@ function Category() {
                         <ul className="pagination">
                             <li className={`page-item ${currentPage === totalPages ? "disabled" : ""}`}>
                                 <button className="page-link ms-1" onClick={() => setCurrentPage(currentPage + 1)}>
-                                    Next
+                                    Suivant
                                     <i className="ci-arrow-right ms-3" />
                                 </button>
                             </li>
@@ -109,7 +112,8 @@ function Category() {
                     </nav>
                 </div>
             </section>
-
+            </section>
+            </div>
             <Footer />
         </div>
     );

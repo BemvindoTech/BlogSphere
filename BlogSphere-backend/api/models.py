@@ -86,7 +86,7 @@ class Post(models.Model):
 
     STATUS = (
         ('Active','Active'),
-        ('draft','Draft'),
+        ('Draft','Draft'),
         ('Disabled','Disabled'),
     )
 

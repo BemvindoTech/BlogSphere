@@ -35,6 +35,16 @@ function Dashboard() {
         fetchDashboardData();
     },[]);
 
+    const findTypeNoti =  (type) => {
+        if (type==="Like") {
+            return "Aime";
+        }else if (type==="Comment") {
+            return "Commentaire";
+        }else {
+            return "Epinglé";
+        }
+    };
+
     return (
         <>
             <Header />
@@ -208,15 +218,25 @@ function Dashboard() {
                                                     <div className="col-12">
                                                         <div className="d-flex justify-content-between position-relative">
                                                             <div className="d-sm-flex">
-                                                                <div className="icon-lg bg-opacity-15 rounded-2 flex-shrink-0">
-                                                                    <i className="fas fa-thumbs-up text-primary fs-5" />
-                                                                </div>
+                                                                <div className="icon-lg bg-opacity-15 rounded-2 flex-shrink-0">{n.type === "Like" && <i className="fas fa-thumbs-up text-primary fs-5" />}</div>
+                                                                <div className="icon-lg bg-opacity-15 rounded-2 flex-shrink-0">{n.type === "Comment" && <i className="bi bi-chat-left-quote-fill  text-success fs-5" />}</div>
+                                                                <div className="icon-lg bg-opacity-15 rounded-2 flex-shrink-0">{n.type === "Bookmark" && <i className="fas fa-bookmark text-danger fs-5" />}</div>
                                                                 <div className="ms-0 ms-sm-3 mt-2 mt-sm-0">
-                                                                    <h6 className="mb-0">{n?.type}</h6>
+                                                                    <h6 className="mb-0">{findTypeNoti(n?.type)}</h6>
                                                                     <p className="mb-0">
                                                                         {n?.type === "Like" && (
                                                                                 <p>
                                                                                     Quelqu'un a aimé  votre article <b>{n?.post?.title?.slice(0,30)}...</b>
+                                                                                </p>
+                                                                        )}
+                                                                        {n?.type === "Comment" && (
+                                                                                <p>
+                                                                                    Quelqu'un a commenté votre article <b>{n?.post?.title?.slice(0,30)}...</b>
+                                                                                </p>
+                                                                        )}
+                                                                        {n?.type === "Bookmark" && (
+                                                                                <p>
+                                                                                    Quelqu'un a épinglé votre article <b>{n?.post?.title?.slice(0,30)}...</b>
                                                                                 </p>
                                                                         )}
                                                                     </p>
@@ -248,7 +268,7 @@ function Dashboard() {
                                         <h5 className="mb-2 mb-sm-0">
                                             Tous vos articles de blog <span className="badge bg-primary bg-opacity-10 text-primary">{posts?.length}</span>
                                         </h5>
-                                        <a href="#" className="btn btn-sm btn-primary mb-0">
+                                        <a href="/add-post/" className="btn btn-sm btn-primary mb-0">
                                             Ajouter un article <i className="fas fa-plus"></i>
                                         </a>
                                     </div>
@@ -282,7 +302,6 @@ function Dashboard() {
                                     </div>
                                     <div className="table-responsive border-0">
                                         <table className="table align-middle p-4 mb-0 table-hover table-shrink">
-                                            {/* Table head */}
                                             <thead className="table-dark">
                                             <tr>
                                                 <th scope="col" className="border-0 rounded-start">

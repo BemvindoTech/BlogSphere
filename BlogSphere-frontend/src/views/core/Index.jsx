@@ -10,37 +10,62 @@ import axios from "axios";
 
 function Index() {
     const [posts, setPosts] = useState([]);
-    const [popularPosts, setPopularPosts] = useState([]);
     const [category, setCategory] = useState([]);
+    const [popularPosts, setPopularPosts] = useState([]);
+    const [lastPosts, setLastPosts] = useState([]);
 
-    const fetchPopularPost = () => {
-        const sortedPopularPost = posts?.sort((a, b) => b.view - a.view);
-        setPopularPosts(sortedPopularPost);
-    };
 
     const fetchPosts = async () => {
         try {
             const response_post = await apiInstance.get('post/lists/');
-            const response_category = await apiInstance.get('post/category/list/');
-
             setPosts(response_post.data);
-            setCategory(response_category.data);
         }catch (error){
             console.log(error);
         }
     };
 
+    const fetchCategory = async () => {
+        const response = await apiInstance.get(`post/category/list/`);
+        setCategory(response.data);
+    };
+
+    const fetchPopularPost = () => {
+        const sortedPopularPost = [...posts]?.sort((a, b) => b.view - a.view);
+        setPopularPosts(sortedPopularPost);
+    };
+
+    const fetchLastPost = () => {
+        const sortedLastPost = [...posts]?.sort((a, b) => new Date(b.date) - new Date(a.date));
+        setLastPosts(sortedLastPost);
+    };
+
     useEffect(() => {
         fetchPosts();
-    },[]);
+        fetchCategory();
+    }, []);
 
-    const itemsPerPage = 1;
-    const [currentPage = setCurrentPage] = useState(1);
+
+    useEffect(() => {
+        fetchPopularPost();
+    }, [posts]);
+
+    useEffect(() => {
+        fetchLastPost();
+    }, [posts]);
+
+    const itemsPerPage = 4;
+    const [currentPage, setCurrentPage] = useState(1);
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-    const postItems = posts?.slice(indexOfFirstItem, indexOfLastItem);
-    const totalPages = Math.ceil(posts?.length / itemsPerPage);
-    const pageNumbers =  Array.from ({length:totalPages}, (_, index) => index + 1);
+    const postItems = [...popularPosts]?.slice(indexOfFirstItem, indexOfLastItem);
+
+    // const itemsPerPage = 4;
+    const [currentPage1, setCurrentPage1] = useState(1);
+    const indexOfLastItem1 = currentPage1 * itemsPerPage;
+    const indexOfFirstItem1 = indexOfLastItem1 - itemsPerPage;
+    const postItems1 = [...lastPosts]?.slice(indexOfFirstItem1, indexOfLastItem1);
+    const totalPages = Math.ceil([...posts]?.length / itemsPerPage);
+    const pageNumbers =  Array.from({ length:totalPages }, (_, index) => index + 1);
 
 
 
@@ -63,7 +88,7 @@ function Index() {
             <section className="pt-4 pb-0">
                 <div className="container">
                     <div className="row">
-                        {posts  ?.map((post) => (
+                        {postItems?.map((post) => (
                             // console.log("Objet post :", post);
                             <div className="col-sm-6 col-lg-3" key={post?.id}>
                                 <div className="card mb-4">
@@ -76,27 +101,21 @@ function Index() {
                                         <h4 className="card-title">
                                             <Link to={`${post.slug}`}
                                                   className="btn-link text-reset stretched-link fw-bold text-decoration-none">
-                                                {post.title}
+                                                {post.title?.slice(0, 15) + "..."}
                                             </Link>
                                         </h4>
-                                        {/*<button style={{border: "none", background: "none"}}>*/}
-                                        {/*    <i className="fas fa-bookmark text-danger"></i>*/}
-                                        {/*</button>*/}
-                                        {/*<button style={{border: "none", background: "none"}}>*/}
-                                        {/*    <i className="fas fa-thumbs-up text-primary"></i>*/}
-                                        {/*</button>*/}
 
                                         <ul className="mt-3 list-style-none" style={{listStyle: "none"}}>
                                             <li>
                                                 <a href="#" className="text-dark text-decoration-none">
-                                                    <i className="fas fa-user"></i> {post?.profile?.full_name}
+                                                    <i className="fas fa-user"></i> {post?.profile?.full_name || post?.user?.username}
                                                 </a>
                                             </li>
                                             <li className="mt-2">
-                                                <i className="fas fa-calendar"></i> {Moment(post.date)}
+                                                <i className="fas fa-calendar"></i> {Moment(post?.date)}
                                             </li>
                                             <li className="mt-2">
-                                                <i className="fas fa-eye"></i> {post.view} Views
+                                                <i className="fas fa-eye"></i> {post?.view || 0 } Vue(s)
                                             </li>
                                         </ul>
                                     </div>
@@ -122,8 +141,6 @@ function Index() {
                                     </button>
                                 </li>
                             ))}
-
-
                         </ul>
                         <ul className="pagination">
                             <li className={`page-item ${currentPage === totalPages  ? "disabled" : ""}`}>
@@ -145,16 +162,18 @@ function Index() {
                                 <h2>Categories</h2>
                             </div>
                             <div className="d-flex flex-wrap justify-content-between">
-                                {category?.map((category) => (
+                                {category?.map((category,index) => (
                                     <div className="d-flex flex-wrap justify-content-between">
-                                        <div className="mt-2">
+                                        <div className="mt-2" key={index}>
+                                            <Link to={`/category/${category.slug}/`} >
                                             <div className="card bg-transparent">
                                                 <img className="card-img" src={category.image} style={{ width: "150px", height: "80px", objectFit: "cover" }} alt="card image" />
                                                 <div className="d-flex flex-column align-items-center mt-3 pb-2">
                                                     <h5 className="mb-0">{category.title}</h5>
-                                                    <small>{category.post_count || "0"}</small>
+                                                    <small>{category.post_count || "0"} Article(s)</small>
                                                 </div>
                                             </div>
+                                            </Link>
                                         </div>
                                     </div>
                                 ))}
@@ -180,16 +199,16 @@ function Index() {
             <section className="pt-4 pb-0">
                 <div className="container">
                     <div className="row">
-                        {popularPosts?.map((p, index) => (
+                        {postItems1?.map((p, index) => (
                             <div className="col-sm-6 col-lg-3" key={index}>
-                                <div className="card mb-4">ss
+                                <div className="card mb-4">
                                     <div className="card-fold position-relative">
                                         <img className="card-img" style={{ width: "100%", height: "160px", objectFit: "cover" }} src={p.image} alt={p.title} />
                                     </div>
                                     <div className="card-body px-3 pt-3">
                                         <h4 className="card-title">
                                             <Link to={`${p.slug}`} className="btn-link text-reset stretched-link fw-bold text-decoration-none">
-                                                {p.title?.slice(0, 32) + "..."}
+                                                {p.title?.slice(0, 15) + "..."}
                                             </Link>
                                         </h4>
                                         <ul className="mt-3 list-style-none" style={{ listStyle: "none" }}>
@@ -199,10 +218,10 @@ function Index() {
                                                 </a>
                                             </li>
                                             <li className="mt-2">
-                                                <i className="fas fa-calendar"></i> {moment(p.date).format("DD MMM, YYYY")}
+                                                <i className="fas fa-calendar"></i> {Moment(p.date)}
                                             </li>
                                             <li className="mt-2">
-                                                <i className="fas fa-eye"></i> {p.view} Views
+                                                <i className="fas fa-eye"></i> {p.view} Vue(s)
                                             </li>
                                         </ul>
                                     </div>
@@ -212,24 +231,25 @@ function Index() {
                     </div>
                     <nav className="d-flex mt-2">
                         <ul className="pagination">
-                            <li className="">
-                                <button className="page-link text-dark fw-bold me-1 rounded">
+                            <li className={`page-item ${currentPage1 === 1 ? "disabled" : ""}`}>
+                                <button className="page-link text-dark fw-bold me-1 rounded" onClick={() => setCurrentPage1(currentPage1 - 1)}>
                                     <i className="fas fa-arrow-left me-2" />
                                     Précedant
                                 </button>
                             </li>
                         </ul>
                         <ul className="pagination">
-                            <li key={1} className="active">
-                                <button className="page-link text-dark fw-bold rounded">1</button>
-                            </li>
-                            <li key={2} className="ms-1">
-                                <button className="page-link text-dark fw-bold rounded">2</button>
-                            </li>
+                            {pageNumbers.map((number) => (
+                                <li key={1} className={`page-item ${currentPage1 === number ? "active text-white" : ""}`}>
+                                    <button className="page-link text-dark fw-bold rounded" onClick={() => setCurrentPage1(number)}>
+                                        {number}
+                                    </button>
+                                </li>
+                            ))}
                         </ul>
                         <ul className="pagination">
-                            <li className={`totalPages`}>
-                                <button className="page-link text-dark fw-bold ms-1 rounded">
+                            <li className={`page-item ${currentPage1 === totalPages  ? "disabled" : ""}`}>
+                                <button className="page-link text-dark fw-bold ms-1 rounded" onClick={() => setCurrentPage1(currentPage1 + 1)}>
                                     Suivant
                                     <i className="fas fa-arrow-right ms-3 " />
                                 </button>
