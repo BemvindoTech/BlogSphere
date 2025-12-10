@@ -123,9 +123,9 @@ function AddPost() {
                                                             {" "}
                                                             <i className="fas fa-arrow-left"></i> Retouner aux articles
                                                         </Link>
-                                                        <a href="/posts/" className="btn btn-dark ms-2">
-                                                            Enregistrer <i className="fas fa-check-circle"></i>
-                                                        </a>
+                                                        <a href="/add-post/" className="btn btn-dark ms-2">
+                                                            Ajouter une nouvelle article <i className="fas fa-check-circle"></i>
+                                                        </a>git
                                                     </div>
                                                 </div>
                                             </div>
