@@ -21,8 +21,9 @@ import articles
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# Exemple pour lire depuis une variable d'environnement (HOST_NAME):
-ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '').split(',')
+# Récupère la liste des hôtes à partir d'une variable d'environnement (séparée par des virgules)
+# et autorise également l'accès local (localhost et 127.0.0.1)
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '').split(',') + ['localhost', '127.0.0.1']
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
@@ -33,7 +34,9 @@ SECRET_KEY = 'django-insecure-f-5g&uwi0y!qvne&)#w7lcj%$n692j597!7o2l7kgie96o3566
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+
+]
 
 
 
