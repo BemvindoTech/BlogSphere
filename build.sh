@@ -2,7 +2,7 @@
 
 # 1. Préparer le Frontend (React)
 echo "--- Installation des dépendances Frontend (React) ---"
-cd BlogSphere-frontend/
+cd BlogSphere-frontend
 yarn install
 yarn dev # Lance la commande de construction (crée le dossier 'build' ou 'dist')
 cd ..
