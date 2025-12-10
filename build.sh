@@ -2,9 +2,10 @@
 
 # 1. Préparer le Frontend (React)
 echo "--- Installation des dépendances Frontend (React) ---"
+cd ..
 cd BlogSphere-frontend
 yarn install
-yarn dev # Lance la commande de construction (crée le dossier 'build' ou 'dist')
+yarn run build # Lance la commande de construction (crée le dossier 'build' ou 'dist')
 cd ..
 
 # 2. Préparer le Backend (Django)
