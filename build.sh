@@ -1,5 +1,4 @@
-#!/usr/bin/env bash
-# build.sh
+
 
 # 1. Préparer le Frontend (React)
 echo "--- Installation des dépendances Frontend (React) ---"
