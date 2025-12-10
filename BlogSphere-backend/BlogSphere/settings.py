@@ -29,14 +29,17 @@ ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '').split(',') + ['localhost', '
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-f-5g&uwi0y!qvne&)#w7lcj%$n692j597!7o2l7kgie96o3566'
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = [
-
+    'blogsphere-backend-5llw.onrender.com',
+    'localhost',
+    '127.0.0.1'
 ]
+
 
 
 
@@ -155,7 +158,7 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 # Chemins STATIQUES SUPPLÉMENTAIRES où Django doit chercher des fichiers.
 # Il doit pointer vers le dossier 'build' créé par React.
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR.parent, 'BlogSphere-frontend/build'), # Important !
+    os.path.join(BASE_DIR.parent, 'BlogSphere-frontend/dist'), # Important !
 ]
 
 # Default primary key field type
