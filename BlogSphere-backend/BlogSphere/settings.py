@@ -34,6 +34,14 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
+
+# 1. Lecture des identifiants depuis l'environnement
+CLOUDINARY_CLOUD_NAME = os.environ.get('CLOUDINARY_CLOUD_NAME')
+CLOUDINARY_API_KEY = os.environ.get('CLOUDINARY_API_KEY')
+CLOUDINARY_API_SECRET = os.environ.get('CLOUDINARY_API_SECRET')
+
+# 2. Définition du système de stockage par défaut
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 # Application definition
 
 
@@ -47,6 +55,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'articles',
+    'cloudinary',
+    'cloudinary_storage',
 
     # Custum Apps
     'api',
@@ -134,6 +144,14 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = 'static/'
+# Chemin où Django collectera TOUS les fichiers statiques pour le service (Render)
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
+# Chemins STATIQUES SUPPLÉMENTAIRES où Django doit chercher des fichiers.
+# Il doit pointer vers le dossier 'build' créé par React.
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR.parent, 'BlogSphere-frontend/build'), # Important !
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field

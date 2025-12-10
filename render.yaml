@@ -1,0 +1,76 @@
+# render.yaml
+
+# Le schéma Render que nous utilisons
+services:
+  # ----------------------------------------------------
+  # 1. SERVICE DE BASE DE DONNÉES (PostgreSQL)
+  # ----------------------------------------------------
+  - type: pserv
+    name: blogsphere-db
+    plan: starter # 'starter' est suffisant pour le développement/petits projets
+    databaseName: blogsphere_db
+    # Vous pouvez définir un utilisateur et un mot de passe par défaut
+    user: blogsphere_user
+
+  # ----------------------------------------------------
+  # 2. SERVICE WEB (Backend Django)
+  # ----------------------------------------------------
+  - type: web
+    name: blogsphere-backend
+    # Le chemin vers le dossier contenant le code du backend (depuis la racine)
+    rootDir: BlogSphere-backend
+    # Le plan tarifaire
+    plan: free # 'free' ou 'starter'
+    # Le runtime (environnement d'exécution)
+    runtime: python
+
+    # La branche Git à déployer
+    branch: main
+
+    # Commande pour installer les dépendances et construire l'application.
+    # Dans un mono-repo, vous appelez le script build.sh que vous avez créé.
+    # Note: Assurez-vous que Python et Node sont disponibles dans l'environnement de build.
+    buildCommand: "./../build.sh"
+    # Pour que cette commande fonctionne, le script build.sh doit être adapté
+    # pour être appelé depuis le dossier 'backend' (rootDir).
+    # Alternativement, si vous mettez le build.sh à la racine du repo :
+    # buildCommand: "./build.sh"
+
+    # Commande pour démarrer le serveur Gunicorn
+    startCommand: gunicorn config.wsgi:application
+
+    # Définition des variables d'environnement
+    envVars:
+      # Lier la base de données créée ci-dessus au SERVICE WEB
+      - key: DATABASE_URL
+        fromDatabase:
+          name: BlogSphere-db
+          property: connectionString
+
+      # Variables d'environnement critiques pour Django
+      - key: SECRET_KEY
+        generateValue: true # Render génère une clé aléatoire forte
+      - key: WEB_HOST
+        value: blogsphere-backend.onrender.com # Remplacez par votre nom de service Render
+      - key: DJANGO_SETTINGS_MODULE
+        value: config.settings # Remplacez 'config' par le nom de votre dossier de settings
+
+      # Configuration Cloudinary (à remplacer par vos identifiants réels)
+      - key: CLOUDINARY_CLOUD_NAME
+        value: votre_cloud_name
+      - key: CLOUDINARY_API_KEY
+        value: votre_api_key
+      - key: CLOUDINARY_API_SECRET
+        sync: false # Laissez à 'false' si vous définissez la valeur directement ou via l'interface Render
+
+    # Configuration des tâches Post-Deployment (après la construction et avant le démarrage)
+    autoDeploy: true
+    previewsEnabled: true
+    numInstances: 1
+
+    # Tâche à exécuter APRÈS le déploiement réussi (migrations de base de données)
+    # Assurez-vous que cette commande est exécutée depuis le bon répertoire.
+    # Ici, nous supposons que le répertoire courant est 'backend'.
+    # Si le rootDir est 'backend', ceci est correct.
+    postDeployCommands:
+      - python manage.py migrate  
